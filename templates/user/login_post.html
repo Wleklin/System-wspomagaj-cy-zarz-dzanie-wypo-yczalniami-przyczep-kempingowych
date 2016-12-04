@@ -1,0 +1,19 @@
+{extends '_main/_index.html'}
+
+{block name='main'}
+
+<h2>Logowanie</h2>
+
+{if $logged_ok}
+    <div class="alert alert-success">
+        Pomyślnie zalogowano!<br>
+        <a href="{baseUrl}" class="btn btn-info">Przejdź do strony głównej</a>
+    </div>
+{else}
+    <div class="alert alert-danger">
+        Brak użytkownika lub błędne hasło<br>
+        <a href="{siteUrl url='/user/login'}" class="btn btn-info">Spróbuj ponownie</a>
+    </div>
+{/if}
+
+{/block}

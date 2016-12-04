@@ -1,0 +1,30 @@
+{extends '_main/_index.html'}
+
+{block name='main'}
+
+<h2><img class="avatar" alt="avatar" src="http://www.gravatar.com/avatar/{$hemail}?d=wavatar"><strong>{$name} {$surname}</strong></h2>
+
+<table class="table">
+    <tr>
+        <td>Adres email</td>
+        <td>{$email}</td>
+    </tr>
+    {if $skype|strlen > 0}
+    <tr>
+        <td>Skype</td>
+        <td>
+            <a href="skype:{$skype}?call">
+                <img src="http://mystatus.skype.com/smallclassic/{$skype}">
+            </a>
+        </td>
+    </tr>
+    {/if}
+    {if $tel|strlen > 0}
+    <tr>
+        <td>Numer telefonu</td>
+        <td>{$tel}</td>
+    </tr>
+    {/if}
+</table>
+
+{/block}

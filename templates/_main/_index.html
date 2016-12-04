@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Wally team">
+
+    <title>Wally</title>
+
+    <link href="{baseUrl}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{baseUrl}/css/main.css" rel="stylesheet">
+
+    <style>
+    body {
+        padding-top: 70px;
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    {* navigation *}
+    {include '_main/_menu.html'}
+    
+    <div class="container" id="mainContainer">
+    
+        <div class="row">
+        
+            {if $smarty.session.login_ok && isset($user)}
+            
+            <div class="col-sm-3">
+                <div class="sidebar" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+                    {include '_main/_left-column.html'}
+                    <br><br>
+                    {block 'users'}
+
+                    {/block}
+                </div>
+            </div>
+            
+            <div class="col-sm-9">
+                {block 'main'}
+
+                {/block}
+            </div>
+            
+            {else}
+            <div>
+                {block 'main'}
+
+                {/block}
+            </div>
+            {/if}
+        
+        </div>
+        
+        {if !$smarty.session.login_ok && !isset($user)}
+        <div class="row" id="footer">
+            <div class="footer">
+                &copy; Wally Team
+            </div>
+        </div>
+        {/if}
+    
+    </div>
+    
+    <script src="{baseUrl}/js/jquery-1.11.2.min.js"></script>
+    <script src="{baseUrl}/js/jquery.scrollTo.min.js"></script>
+    <script src="{baseUrl}/js/bootstrap.min.js"></script>
+    <!-- <script src="{baseUrl}/js/tinymce.min.js"></script>
+    <script src="{baseUrl}/js/tinymce_lang/pl.js"></script> -->
+    
+    {block 'extra_scripts'}
+    
+    {/block}
+    
+    <script>
+        $('#deleteModal [data-name=no]').click(function(e) {
+           $('#deleteModal').modal('hide'); 
+        });
+    </script>
+
+    <script>
+        var url = window.location;
+        // Will only work if string in href matches with location
+        $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
+
+        // Will also work for relative and absolute hrefs
+        $('ul.nav a').filter(function() {
+            return this.href == url;
+        }).parent().addClass('active');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{extends '_main/_index.html'}
+
+{block name='main'}
+<form action="{siteUrl url='/user/menage'}" method="post">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Edycja profilu</h3>
+  </div>
+  <div class="panel-body">
+    
+    <table class="table">
+        <tr class="form-group">
+            <td>
+                <label for="name">Imię</label>
+            </td>
+            <td>
+                <input class="form-control" type="text" name="name" id="name" value="{$name}">
+            </td>
+        </tr>
+        <tr class="form-group">
+            <td>
+                <label for="surname">Nazwisko</label>
+            </td>
+            <td>
+                <input class="form-control" type="text" name="surname" id="surname" value="{$surname}">
+            </td>
+        </tr>
+        <tr class="form-group">
+            <td>
+                <label for="email">Adres email</label>
+            </td>
+            <td>
+                <input class="form-control" type="text" name="email" id="email" value="{$email}">
+            </td>
+        </tr>
+        <tr class="form-group">
+            <td>
+                <label for="skype">Skype</label>
+            </td>
+            <td>
+                <input class="form-control" type="text" name="skype" id="skype" value="{$skype}">
+            </td>
+        </tr>
+        <tr class="form-group">
+            <td>
+                <label for="tel">Numer telefonu</label>
+            </td>
+            <td>
+                <input class="form-control" type="number" name="tel" id="tel" value="{$tel}">
+            </td>
+        </tr>
+    </table>
+  </div>
+  <div class="panel-footer">
+        <button type="submit" class="btn btn-default pull-right">Zmień dane</button>
+        <div class="clearfix"></div>
+    </div>
+    
+</div>
+</form>
+
+
+{/block}

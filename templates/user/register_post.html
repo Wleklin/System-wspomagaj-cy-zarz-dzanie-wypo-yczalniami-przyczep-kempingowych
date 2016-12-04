@@ -1,0 +1,24 @@
+{extends '_main/_index.html'}
+
+{block name='main'}
+
+<h2>Zarejestruj się</h2>
+
+{if $correct}
+    <div class="alert alert-success">
+        <strong>Rejestracja przebiegła pomyślnie</strong>.<br>
+        Możesz się teraz <a href="{siteUrl url='/user/login'}">zalogować</a>.
+    </div>
+{else}
+    <div class="alert alert-danger">
+        <strong>Podczas rejestracji pojawiły się następujące błędy:</strong><br>
+        <ul>
+            {foreach $errors as $error}
+            <li>{$error}</li>
+            {/foreach}
+        </ul>
+        <a href="{siteUrl url='/user/register'}">Spróbuj ponownie</a>.
+    </div>
+{/if}
+
+{/block}

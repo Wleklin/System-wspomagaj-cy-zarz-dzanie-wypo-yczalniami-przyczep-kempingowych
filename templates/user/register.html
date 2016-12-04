@@ -1,0 +1,96 @@
+{extends '_main/_index.html'}
+
+{block name='main'}
+
+<form action="{siteUrl url='user/register'}" method="post" class="">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Rejestracja</h3>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group">
+        <label for="email">Adres email *</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Adres email" maxlength="45" required>
+    </div>
+    <div class="form-group">
+        <label for="passwd1">Hasło <small>(min. 8 znaków)</small> *</label>
+        <input type="password" class="form-control" id="passwd1" name="passwd1" placeholder="Hasło" required>
+        <input type="password" class="form-control" id="passwd2" name="passwd2" placeholder="Powtórz hasło" required>
+        <div id="passwordCheck" class="alert"></div>
+    </div>
+    <div class="form-group">
+        <label for="name">Imię *</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Imię" maxlength="15" required>
+    </div>
+    <div class="form-group">
+        <label for="surname">Nazwisko *</label>
+        <input type="text" class="form-control" id="surname" name="surname" placeholder="Nazwisko" maxlength="45" required>
+    </div>
+    <div class="form-group">
+        <label for="skype">Identyfikator Skype</label>
+        <input type="text" class="form-control" id="skype" name="skype" maxlength="20" placeholder="Identyfikator Skype">
+    </div>
+    <div class="form-group">
+        <label for="phone">Numer telefonu</label>
+        <input type="number" class="form-control" id="phone" name="phone" maxlength="20" placeholder="Numer telefonu">
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button type="submit" class="btn btn-default pull-right" id="registerButton">Zarejstruj się</button>
+    <div class="clearfix"></div>
+  </div>
+</div>
+</form>
+
+{/block}
+
+{block name='extra_scripts' prepend}
+    {literal}
+    <script>
+        (function() {
+            function checkPasswords() {
+                var errors = [];
+                
+                var pass1 = $('#passwd1').val();
+                var pass2 = $('#passwd2').val();
+                var outHTML = '';
+                
+                var passwdCheckEl = $('#passwordCheck');
+                passwdCheckEl.html('');
+                
+                if(pass1!==pass2) {
+                    errors.push('Podane hasła nie są jednakowe');
+                }
+                if(pass1.length < 8) {
+                    errors.push('Podane hasło jest za krótkie');
+                }
+                
+                if(errors.length > 0) {
+                    $('#registerButton').attr('disabled', true);
+                    passwdCheckEl.removeClass('alert-success');
+                    passwdCheckEl.addClass('alert-danger');
+                    outHTML = '<strong>Błąd</strong><br>';
+                    outHTML += 'Wykryte problemy:';
+                    outHTML += '<ul>';
+                    for(var i=0,len=errors.length;i<len;++i) {
+                        outHTML += '<li>' + errors[i] + '</li>';
+                    }
+                    outHTML += '</ul>';
+                    passwdCheckEl.html(outHTML);
+                }
+                else {
+                    $('#registerButton').attr('disabled', false);
+                    passwdCheckEl.removeClass('alert-danger');
+                    passwdCheckEl.addClass('alert-success');
+                    passwdCheckEl.html('Hasła się zgadzają.')
+                }
+            }
+
+            $('#passwd1').keyup(checkPasswords);
+            $('#passwd2').keyup(checkPasswords);
+        })();
+    </script>
+    {/literal}
+{/block}
